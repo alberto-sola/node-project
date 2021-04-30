@@ -1,4 +1,4 @@
-import {Student} from "../modules/Student.js";
+import {Student} from "../models/Student.js";
 
 export default async (req, res) => {
     /*let media = req.body.media * 10;*/
