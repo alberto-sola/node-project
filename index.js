@@ -8,13 +8,9 @@ import getStudentController     from './controllers/get.student.js'
 import indexController          from './controllers/index.controller.js'
 import newStudentPageController from './controllers/new.student.page.js'
 import updateStudentController  from './controllers/update.student.js'
+import notFoundController       from './controllers/page.not.found.js'
 
-/* Starting the server */
 const app = express()
-app.set('view engine', 'ejs')
-    .listen(55987, () => {
-        console.log('Web-server listening on port 55987')
-    })
 
 /* Middlewares */
 app.use(express.static('./public'))
@@ -26,9 +22,16 @@ mongoose.connect('mongodb://localhost/data', { useUnifiedTopology: true, useNewU
     if (err != null) console.log(err)
 })
 
+/* Starting the server */
+app.set('view engine', 'ejs')
+    .listen(55987, () => {
+        console.log('Web-server listening on port 55987')
+    })
+
 app.get('/', indexController)
 app.get('/student/new', newStudentPageController)
 app.get('/student/details/:id', getStudentController)
 app.post('/student/creating', createStudentController)
 app.post('/student/updating/:id', updateStudentController)
 app.post('/student/removing/:id', deleteStudentController)
+app.get('*', notFoundController)
