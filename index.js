@@ -1,6 +1,5 @@
 import express      from 'express'
 import mongoose     from 'mongoose'
-import bodyParser   from 'body-parser'
 
 import createStudentController  from './controllers/create.student.js'
 import deleteStudentController  from './controllers/delete.student.js'
@@ -14,8 +13,8 @@ const app = express()
 
 /* Middlewares */
 app.use(express.static('./public'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 /* Database */
 mongoose.connect('mongodb://localhost/data', { useUnifiedTopology: true, useNewUrlParser: true}, (err) => {
