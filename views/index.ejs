@@ -1,0 +1,35 @@
+<%- include('./partials/head') -%>
+<div class="container-fluid py-5">
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="d-flex flex-row flex-wrap justify-content-center align-items-center">
+                <% for (let i = 0; i < data.length; i++) { %>
+                    <div class="myCard d-flex flex-column align-items-center justify-content-between text-center">
+                        <h5 class="card-subtitle text-muted mb-2"><%= data[i].name %> <%= data[i].surname %></h5>
+                        <span class="media clr-ctrl"><%= data[i].media %></span>
+                        <a href="/student/details/<%= data[i]._id %>" class="my-btn">Dettagli</a>
+                    </div>
+                <% } %>
+            </div>
+            <a href="student/new" class="btn btn-warning add-btn" style="display: none">Aggiungi</a>
+        </div>
+        <div class="col d-flex align-items-start justify-content-center">
+            <form class="m-4" action="/" method="get" style="/*width: 17rem;*/" id="form">
+                <label class="form-label" for="min">Minimo</label>
+                <input class="form-control mb-2" type="number" min="0" max="10" step="0.01"
+                       id="min" name="min" pattern="[0-9]+([\.,][0-9]+)?" value="<%= min %>">
+                <label class="form-label" for="max">Massimo</label>
+                <input class="form-control mb-2" type="number" min="0" max="10" step="0.01"
+                       id="max" name="max" pattern="[0-9]+([\.,][0-9]+)?" value="<%= max %>">
+                <label class="form-label" for="sub">Cerca</label>
+                <input class="form-control mb-4" type="text" id="sub" name="sub" placeholder="Mario" pattern="[a-zA-Z]{0,20}" value="<%= sub %>">
+
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary" onclick="validate()">Filtra<i class="fas fa-filter ms-2"></i></button>
+                    <a class="btn btn-success <%= searched %>" href="/" id="ripristina">Ripristina</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('./partials/tail') -%>

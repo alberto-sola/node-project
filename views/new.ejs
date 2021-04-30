@@ -1,0 +1,17 @@
+<%- include('./partials/head') -%>
+<div class="container d-flex flex-row flex-wrap justify-content-center align-items-center" style="height: 100vh;">
+    <form action="/student/creating" method="post" style="width: 20rem">
+        <label class="form-label" for="name">Nome</label>
+        <input class="form-control mb-2" type="text" id="name" name="name" required pattern="[a-zA-Z]{3,20}">
+        <label class="form-label" for="surname">Cognome</label>
+        <input class="form-control mb-2" type="text" id="surname" name="surname" required pattern="[a-zA-Z]{3,20}">
+        <label class="form-label" for="media">Media</label>
+        <input class="form-control mb-5" id="media" name="media" type="number" required pattern="[0-9]+([\.,][0-9]+)?" min="0" max="10" step="0.01">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <button class="btn btn-primary" onclick="validate()">Aggiungi</button>
+            <a href="/" class="btn btn-outline-danger">Annulla</a>
+        </div>
+    </form>
+</div>
+<%- include('./partials/tail') -%>
